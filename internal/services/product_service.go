@@ -2,8 +2,8 @@ package services
 
 import (
 	"errors"
-	"go_api_example/database"
-	"go_api_example/models"
+	"go_api_example/internal/database"
+	"go_api_example/internal/models"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
