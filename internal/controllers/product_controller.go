@@ -6,9 +6,9 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 
-	"go_api_example/database"
-	"go_api_example/models"
-	"go_api_example/services"
+	"go_api_example/internal/database"
+	"go_api_example/internal/models"
+	"go_api_example/internal/services"
 )
 
 // CreateProduct - POST /products

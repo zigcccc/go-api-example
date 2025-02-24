@@ -1,32 +1,32 @@
 package auth
 
 import (
-	"log"
-	"os"
-
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
 
-	"github.com/joho/godotenv"
+	"go_api_example/internal/config"
 )
 
 func CreateOAuth2Config() oauth2.Config {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
+
+	cfg := config.GetConfig()
 
 	return oauth2.Config{
-		ClientID:     os.Getenv("OAUTH2_CLIENT_ID"),
-		ClientSecret: os.Getenv("OAUTH2_CLIENT_SECRET"),
+		ClientID:     cfg.OAuth.ClientID,
+		ClientSecret: cfg.OAuth.ClientSecret,
 		RedirectURL:  "http://localhost:8080/auth/callback",
 		Scopes:       []string{"email"},
 		Endpoint:     google.Endpoint,
 	}
 }
 
+func GetSecretKey() string {
+	cfg := config.GetConfig()
+
+	return cfg.OAuth.SecretKey
+}
+
 var (
 	OAuth2Config      = CreateOAuth2Config()
 	OAuth2StateString = "randomstate"
-	SecretKey         = os.Getenv("OAUTH2_SECRET_KEY")
 )

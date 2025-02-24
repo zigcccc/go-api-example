@@ -13,8 +13,8 @@ import (
 	"golang.org/x/oauth2"
 	"gorm.io/gorm"
 
-	"go_api_example/database"
-	"go_api_example/models"
+	"go_api_example/internal/database"
+	"go_api_example/internal/models"
 )
 
 func LoginHandler(c *gin.Context) {
@@ -92,5 +92,5 @@ func CreateJWTToken(id uuid.UUID, email string) (string, error) {
 
 	// Create a new JWT token
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	return token.SignedString([]byte(SecretKey))
+	return token.SignedString([]byte(GetSecretKey()))
 }
